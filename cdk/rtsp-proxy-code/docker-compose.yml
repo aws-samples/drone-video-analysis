@@ -1,0 +1,35 @@
+#Docker compose
+version: '3.7'
+#We have two services, one is the rtsp simple server in dockerfile Dockerfile-RTSPServer
+#The other is a kinesis streaming agent in dockerfile Dockerfile-KinesisRTSP
+services:
+  rtspserver:
+    platform: linux/amd64
+    # Sample run command:    docker run --rm  -e RTSP_PROTOCOLS=tcp -p 8554:8554 -p 1935:1935 -p 8888:8888 -p 8889:8889 aler9/rtsp-simple-server
+    build:
+      context: .
+      dockerfile: Dockerfile-RTSP-Server
+    container_name: rtspserver
+    ports:
+      - "1935:1935"
+      - "9997:9997"
+#    volumes:
+#       - ./rtsp-simple-server.yml:/rtsp-simple-server.yml
+    # environment:
+    #     - RTSP_PROTOCOLS=tcp
+    restart: always
+  kinesisrtsp:
+    #    use linux/amd64 image from docker hub
+    platform: linux/amd64
+    environment:
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+    build:
+      context: .
+      dockerfile: Dockerfile-KinesisProxy
+    container_name: kinesisrtsp
+    ports:
+      - "8080:8080"
+    restart: always
