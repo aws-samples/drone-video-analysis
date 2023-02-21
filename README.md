@@ -136,7 +136,7 @@ Open source datasets for shark detection model
 * [Test dataset](https://universe.roboflow.com/d4ms/sharkspotting-2shbe/dataset/3)
 * [Training dataset](https://universe.roboflow.com/augie-doebling/sharkspotting)
 
-Download the dataset in the PyTorch format and you can convert it to Ground Truth format using the following script.
+Download the dataset in the PyTorch format and you can convert it to Ground Truth format using the following script `scripts/yolo_to_ground_truth.py` in the repository.
 This can be uploaded to Amazon Rekognition Custom Labels to train a custom model by choosing the Manifest file option. 
 
 Alternatively, if you do not have any labeled data, you can use the [Amazon Rekognition Custom Labels](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-localize-objects.html) console to label the images and train the model.
