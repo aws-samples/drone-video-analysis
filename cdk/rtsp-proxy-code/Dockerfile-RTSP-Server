@@ -1,4 +1,1 @@
 FROM aler9/rtsp-simple-server
-COPY send-to-kinesis.sh .
-RUN chmod +x send-to-kinesis.sh
-COPY rtsp-simple-server.yml .

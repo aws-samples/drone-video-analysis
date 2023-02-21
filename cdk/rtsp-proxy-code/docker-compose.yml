@@ -13,8 +13,8 @@ services:
     ports:
       - "1935:1935"
       - "9997:9997"
-#    volumes:
-#       - ./rtsp-simple-server.yml:/rtsp-simple-server.yml
+    # volumes:
+    #   - ./rtsp-simple-server.yml:/rtsp-simple-server.yml
     # environment:
     #     - RTSP_PROTOCOLS=tcp
     restart: always
