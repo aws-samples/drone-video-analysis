@@ -116,7 +116,7 @@ def process(yolo_path, bucket_path, output_path):
     class_map = {}
     with open(os.path.join(yolo_path, "data.yaml")) as f:
         #         Convert yaml to json
-        data = yaml.load(f, Loader=yaml.FullLoader)
+        data = yaml.safe_load(f, Loader=yaml.FullLoader)
         for i, class_name in enumerate(data["names"]):
             class_map[i] = class_name
 
